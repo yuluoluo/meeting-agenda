@@ -1,0 +1,31 @@
+
+<div class="modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+                <form name="result">
+                <input class="textbox" type="text" ng-model="result.name" id="activityNameBox" placeholder="Name"/>
+                <input class="textbox" type="number" ng-model="result.length" id="activityLengthBox" placeholder="Length"/> min
+                
+                <select ng-model="result.type" id="activityType" class="textbox">
+                        <option value="Presentation">Presentation</option>
+                        <option value="Discussion">Discussion</option>
+                        <option value="Groupwork">Group work</option>
+                        <option value="Break">Break</option>
+                </select>
+                <textarea  class="textbox" type="text" ng-model="result.description" style="height:120px;"  id="activityDescrBox" placeholder="Description"></textarea>
+
+      <div class="modal-footer">
+        <button type="button" ng-click="close()" class="btn btn-primary" data-dismiss="modal">OK</button>
+        <button type="button" ng-click="cancel()" class="btn">Cancel</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

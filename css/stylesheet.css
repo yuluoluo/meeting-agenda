@@ -1,0 +1,355 @@
+
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+/* fontawesome */
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*------ utiltity classes -----*/
+
+
+
+.fl{ float:left; }
+.fr{ float: right; }
+/*its also known as clearfix*/
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+} 
+.group:after {
+    clear: both;
+}
+.group {
+    zoom: 1;  /*For IE 6/7 (trigger hasLayout) */
+}
+
+body {
+    background: #F2F2F2;
+    font-family: 'Droid Sans', sans-serif;
+    line-height: 1;
+    font-size: 16px;    
+}
+.wrapper {
+    
+}
+.day-table {
+    width: 88%;
+    margin: 50px auto;
+    text-align: center;
+    padding: 10px;
+    padding-right: 0;
+}
+.day-table .heading{
+
+    color: #9C9E9F;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    margin-bottom: 4rem;
+}
+.day-table .weather{
+    text-align:right;
+    color: #9C9E9F;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    margin-bottom: 4rem;
+}
+.block{
+    width: 22%;    
+    margin: 0 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;    
+/*    border: 1px solid red;*/
+}
+
+/*Shared properties*/
+.title, .pt-footer{
+
+    color: #FEFEFE;
+    text-transform: capitalize;
+    line-height: 2.5;
+    position: relative;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+.content{
+    font-size: medium; 
+    position: relative;
+    color: #FEFEFE;
+    padding: 20px 0 10px 0;
+}
+
+.activityContent{
+    font-size: medium; 
+    position: relative;
+    color: #666666;
+    padding: 10px 0px 10px 12px;
+}
+
+#Discussion {
+  background-color: #48d1cc;
+}
+
+#Break {
+  background-color: #48d188;
+}
+
+#Presentation {
+  background-color: #4892d1;
+}
+
+#Groupwork {
+ background-color: #d14891;
+}
+/*arrow creation*/
+.content:after, .content:before,.pt-footer:before,.pt-footer:after {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.pt-footer:after,.pt-footer:before{
+    top:0;
+}
+.content:after,.pt-footer:after {
+  border-color: ra(136, 183, 213, 0)gb; 
+  border-width: 5px;
+  margin-left: -5px;
+}
+/*/arrow creation*/
+
+
+
+.text{
+    
+    display: inline-block;
+   /* margin-top: 0px;
+    margin-left: 5px;
+    text-align:left;*/
+}
+/*.text span{    
+    font-size: 1.5rem;
+    letter-spacing: 8px;
+    font-weight: bold;        
+}
+.text sup{
+    font-size: 1.5rem;    
+    position: absolute;    
+    top: 12px;
+    left: 12px;
+}
+.hint{
+    font-style: italic;
+    font-size: 0.9rem;
+}*/
+.features{
+    list-style-type: none;    
+    background: #FFFFFF;
+    text-align: left;
+    color: #9C9C9C;
+    padding:40px 5%;
+    font-size: 0.9rem;
+    min-height:250px;
+}
+.features li{
+    padding:15px 15px;
+    width: 100%;
+}
+.features li span{
+   padding-right: 0.4rem; 
+}
+.pt-footer{
+    font-size: 0.95rem;
+    text-transform: capitalize;
+}
+
+.parked .title{        
+    background: #3EC6E0;    
+}
+.parked .content,.parked .pt-footer{
+    background: #53CFE9;
+}
+.parked .content:after{ 
+  border-top-color: #53CFE9;
+}
+.parked .pt-footer:after{
+    border-top-color: #FFFFFF;
+}
+
+.parked .activityContent:after{ 
+  border-top-color: ##eaeaec;
+}
+
+.popup {
+   
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: auto;
+  margin-left: -200px;
+  margin-top: -150px;
+  background-color: white;
+  padding: 25px;
+  border-radius: 5px;
+  z-index: 10;
+  box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
+  
+  &.active {
+    display: block;
+  }
+  
+  header {
+    position: relative;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  .close {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    margin: 0;
+  }
+
+
+}
+.textbox, #typeList{
+  width:380px;
+  height:40px;
+  background:#efefef;
+  border-radius:5px;
+  border:1px solid #dedede;
+  padding:10px;
+  margin:3px 0px 10px 20px;
+  font-size:0.9em;
+  text-align: left;
+
+  transition: background 0.2s;
+}
+
+button {
+ border-radius: 5px;
+  padding: 5px 20px;
+  font-size: 12px;
+  text-decoration: none;
+  margin: 10px;
+  position: relative;
+  display: inline-block;
+    
+  }
+
+  .button-success {
+    background-color: #2ecc71;
+    &:hover {
+      background: #48E68B;
+    }
+  }
+
+  .button-error {
+    background-color: #e74c3c;
+
+    &:hover {
+      background: #FF6656;
+    }
+  }
+
+  .button2 {
+   border: 1px solid #FEFEFE;
+   padding: 2px 55px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   color:#FEFEFE ;
+   text-decoration: none;
+   vertical-align: middle;
+    font-size:12px;
+  background-color:#53CFE9;
+   }
+
+  .button3 {
+   border: 1px solid #FEFEFE;
+   padding: 10px 55px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   color:#FEFEFE ;
+   text-decoration: none;
+   vertical-align: middle;
+    font-size:12px;
+  background-color:#53CFE9;
+   }
+
+ /*For modal-popup */
+.ng-modal-overlay {
+  /* A dark translucent div that covers the whole screen */
+  position:absolute;
+  z-index:9999;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color:#000000;
+  opacity: 0.8;
+}
+.ng-modal-dialog {
+  /* A centered div above the overlay with a box shadow. */
+  z-index:10000;
+  position: absolute;
+  width: 50%; /* Default */
+
+  /* Center the dialog */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+
+  background-color: #fff;
+  box-shadow: 4px 4px 80px #000;
+}
+.ng-modal-dialog-content {
+  padding:10px;
+  text-align: left;
+}
+.ng-modal-close {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 120%;
+  display: inline-block;
+  font-weight: bold;
+  font-family: 'arial', 'sans-serif';
+}
+#input-text {
+  color: #D14891;
+}
+.rightright { 
+  float:right; 
+  font-size: 25px;
+}
+

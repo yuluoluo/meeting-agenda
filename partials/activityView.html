@@ -1,0 +1,102 @@
+
+<div id="activityView" class="wrapper">
+
+        <div class="day-table group">
+           <div class="col-sm-3"><h2><span ng-click="refresh(0)" class="fontawesome-refresh" style="cursor: pointer"></span> Meeting Agenda</h2></div>
+            <div ng-init="getWeather(); refresh(1000)" class="weather">
+                <p>Today: <span ng-bind="weatherToday"></span></p>
+                <p>Tomorrow: <span ng-bind="weatherTomorrow"></span></p>
+                <button class="btn btn-primary btn-xs" ng-click="getWeather()">Get Weather - Powered by Forecast</button>
+            </div>
+
+            <div class="block parked fl">
+                <h2 class="title">Parked</h2>
+                <div class="content">
+                    <p class="text">
+                        <button data-ng-click='showAddActivity()' id="addActivityBtn" class="button3"> +Add Activity</button>
+
+                    </p>
+                </div>
+
+                <div id="parkedActivities" style="display:block; min-height:310px" class="features thumbnail" data-drop="true" jqyoui-droppable="{multiple:true, onDrop: 'storeNewDay(null,null)'}" ng-model="parkedActivities">
+
+                     <!-- Creates "activity blocks" based on the parkedActivities found in the model -->
+                    <div ng-repeat="activity in parkedActivities track by $index">
+
+                      <!-- Aktivitet -->
+                      <div class="activityContent ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{placeholder:true, animate: true, index: {{$index}}, onStart: 'storeOld(null, $index)'}" id="{{activity.getTypeId()}}" style="cursor: grab; cursor: -webkit-grab; cursor: -moz-grab; z-index: 99; display: block; font-size: 15px" id="{{$index}}">
+                         
+                          <span ng-click="removeParkedActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>   
+
+                          <span ng-click="getDescription(activity)" class="fontawesome-info-sign" style="cursor: default"></span>                           
+                          {{ activity.getLength() }}  min |  {{ activity.getName() }}
+                                                  
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+         <!-- Creates "day blocks" based on the days found in the model -->
+        <div ng-repeat="day in days track by $index">
+
+         <div class="block parked fl">
+                <h2 class="title">Day {{$index +1 }} </h2>
+                <div class="content">
+                <div style="width:60px; height:80px; text-align: center; background-color:#d14891" ></div> 
+                    <div class="text">                    
+<!-- Need some styling start! -->       
+                <div ng-controller="setStartTimeController">
+                <form name="myForm">
+                <p style="text-align: center">Start time: </p>
+               <input id="input-text" name="input" type="time" placeholder="HH:mm" 
+                      ng-model="startTime" ng-blur="showValues(day)"/><BR>
+               <span style="text-align: left" class="error" ng-show="myForm.input.$error.time">
+                        Not a valid time!<BR></span>
+                </form>
+                </div>
+<!-- Need some styling end! -->  
+
+                <div style="width:140px; height:80px;float:left">
+                <p>End time: {{ day.getEnd() }}</p>
+                <p>Total length: {{ day.getTotalLength() }} min </p>
+                </div>
+
+
+          <!--  <div class="btn btn-info btn-draggable ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list5" jqyoui-draggable="{index: 0,placeholder:true,animate:true}" style="z-index: 100; left: 0px; top: 0px;">Item 1</div> -->
+
+                </div>
+                <div data-drop="true" jqyoui-droppable="{multiple:true}">
+                    <!-- copy bug occurs because of '...' , onDrop: 'storeNewDay(day, $index)' in the droppable below, so the issue is in the moveActivity function-->
+                  <div id="activitiesOfTheDay" class="features thumbnail ng-pristine ng-valid ui-droppable" data-drop="true" jqyoui-droppable="{index: {{$index}}, multiple: true, onDrop: 'storeNewDay(day.getIndex(),$index)'}" style="z-index: 99; display: block; margin-bottom:0px" aria-disabled="false">
+
+                    <div ng-repeat="activity in dayActivities(day) track by $index">
+                        <div class="activityContent ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{placeholder:true, animate: true, index: {{$index}}, onStart: 'storeOld(day.getIndex(), $index)'}" id="{{activity.getTypeId()}}" style="cursor: grab; cursor: -webkit-grab; cursor: -moz-grab; z-index: 99; display: block; font-size: 15px">  
+
+                            <span ng-click="removeActivity(day, $index)" class="fontawesome-remove" style="cursor: default"></span>
+                        
+                            <span ng-click="getDescription(activity)" class="fontawesome-info-sign" style="cursor: default"></span>                                                   
+                            {{showTime(activity,day,$index)}} | {{activity.getName()}}
+
+                            <span class="rightright" ng-click="moveDown(activity,$index)" style="cursor: default">&#9660;</span>
+
+                            <span class="rightright" ng-click="moveUp(activity,$index)" style="cursor: default">&#9650;</span>
+                            
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="pt-footer">
+                    <button data-ng-click="removeDay(day); hideButton()" class="button2">Remove Day</button>
+                </div>
+            </div>
+            </div>            
+                </div>
+                <div class="block parked fl">
+                <div class="content" style="margin-top:20px">
+                        <button data-ng-click="addDay(); hideButton()" id="addDayBtn" class="button3"> +Add Day</button>
+
+            </div>
+        </div>
+
+    </div>
+
